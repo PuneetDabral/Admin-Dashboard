@@ -1,7 +1,8 @@
 import { Link, useLocation } from 'react-router-dom';
-import { RiDashboard2Fill, RiShoppingBag3Fill } from 'react-icons/ri';
+import { RiCoupon3Fill, RiDashboard2Fill, RiShoppingBag3Fill } from 'react-icons/ri';
 import { AiFillFileText } from 'react-icons/ai';
 import { IoIosPeople } from 'react-icons/io';
+import { FaChartBar, FaChartLine, FaChartPie, FaGamepad, FaStopwatch } from 'react-icons/fa';
 
 interface SidebarItemProps {
   to: string;
@@ -34,6 +35,22 @@ const AdminSideBar: React.FC = () => {
           <SidebarItem to="/admin/product" icon={RiShoppingBag3Fill} label="Product" />
           <SidebarItem to="/admin/customer" icon={IoIosPeople} label="Customer" />
           <SidebarItem to="/admin/transaction" icon={AiFillFileText} label="Transaction" />
+        </ul>
+      </div>
+      <div>
+        <h5>Charts</h5>
+        <ul>
+          <SidebarItem to="/admin/chart/bar" icon={FaChartBar} label="Bar" />
+          <SidebarItem to="/admin/chart/pie" icon={FaChartPie} label="Pie" />
+          <SidebarItem to="/admin/customer/line" icon={FaChartLine} label="Line" />
+        </ul>
+      </div>
+      <div>
+        <h5>Apps</h5>
+        <ul>
+          <SidebarItem to="/admin/app/stopwatch" icon={FaStopwatch} label="Stopwatch" />
+          <SidebarItem to="/admin/app/coupan" icon={RiCoupon3Fill} label="Coupan" />
+          <SidebarItem to="/admin/toss" icon={FaGamepad} label="Toss" />
         </ul>
       </div>
     </aside>
