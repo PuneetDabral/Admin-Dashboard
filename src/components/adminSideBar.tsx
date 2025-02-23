@@ -3,39 +3,37 @@ import { RiDashboard2Fill, RiShoppingBag3Fill } from 'react-icons/ri';
 import { AiFillFileText } from 'react-icons/ai';
 import { IoIosPeople } from 'react-icons/io';
 
-const AdminSideBar = () => {
-  const location = useLocation();
+interface SidebarItemProps {
+  to: string;
+  icon: React.ComponentType;
+  label: string;
+}
 
+const SidebarItem: React.FC<SidebarItemProps> = ({ to, icon: Icon, label }) => {
+  const location = useLocation();
+  const isActive = location.pathname === to;
+
+  return (
+    <li style={{ backgroundColor: isActive ? 'rgba(0,115,255,0.1)' : 'white' }}>
+      <Link to={to} style={{ color: isActive ? 'rgba(0,115,255,1)' : 'black' }}>
+        <Icon />
+        {label}
+      </Link>
+    </li>
+  );
+};
+
+const AdminSideBar: React.FC = () => {
   return (
     <aside>
       <h2>Logo.</h2>
       <div>
         <h5>Dashboard</h5>
         <ul>
-          <li style={{ backgroundColor: location.pathname === '/admin/dashboard' ? 'rgba(0,115,255,0.1)' : 'white' }}>
-            <Link to={'/admin/dashboard'}>
-              <RiDashboard2Fill />
-              Dashboard
-            </Link>
-          </li>
-          <li style={{ backgroundColor: location.pathname === '/admin/product' ? 'rgba(0,115,255,0.1)' : 'white' }}>
-            <Link to={'/admin/product'}>
-              <RiShoppingBag3Fill />
-              Product
-            </Link>
-          </li>
-          <li style={{ backgroundColor: location.pathname === '/admin/customer' ? 'rgba(0,115,255,0.1)' : 'white' }}>
-            <Link to={'/admin/customer'}>
-              <IoIosPeople />
-              Customer
-            </Link>
-          </li>
-          <li style={{ backgroundColor: location.pathname === '/admin/transaction' ? 'rgba(0,115,255,0.1)' : 'white' }}>
-            <Link to={'/admin/transaction'}>
-              <AiFillFileText />
-              Transaction
-            </Link>
-          </li>
+          <SidebarItem to="/admin/dashboard" icon={RiDashboard2Fill} label="Dashboard" />
+          <SidebarItem to="/admin/product" icon={RiShoppingBag3Fill} label="Product" />
+          <SidebarItem to="/admin/customer" icon={IoIosPeople} label="Customer" />
+          <SidebarItem to="/admin/transaction" icon={AiFillFileText} label="Transaction" />
         </ul>
       </div>
     </aside>
